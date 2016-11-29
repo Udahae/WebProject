@@ -1,0 +1,19 @@
+extends ../layout
+
+block content
+    .indicator
+        ul.nav.nav-tabs.nav-justified
+            li.active(role='presentation')
+                a(href='#' id='profile') 프로필 변경
+            li(role='presentation')
+                a(href='#' id='books') 예약현황
+            li(role='presentation')
+                a(href='#' id='host') 숙소등록현황
+    
+    script(src='/javascripts/userdetail.js')
+
+block contentdetail
+//질문이 필요합니다.
+    if()
+        include ../users/hostingroom
+

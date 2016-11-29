@@ -1,0 +1,42 @@
+//extends ../users/detail
+
+//block contentdetail
+
+.container
+    h1.page-header List
+    
+    table.table.table-bordered
+      thead
+        tr
+          th 제목
+          th 도시
+          th 주소
+          th 요금
+          th 날짜
+          th
+      tbody
+        each room in rooms
+          tr
+            td 
+              a(href='/rooms/detail/#{room._id}')= room.title
+            td= room.city
+            td= room.address
+            td= room.pay
+            td
+            //- td= moment(room.createdAt).format('YYYY-MM-DD')
+            td
+              a.btn.btn-xs.btn-default(href='#') 수정
+              | 
+              a.btn.btn-xs.btn-default(href='/rooms/#{room._id}') 삭제
+
+
+
+
+    //- script(type='text/javascript').
+    //-   $(".delete").click(function(e) {
+    //-     var id = $(e.currentTarget).data('id');
+    //-     if (confirm('정말 삭제하시겠습니까?')) {
+    //-       $("#deleteForm").attr('action', "/rooms/" + id + "?_method=DELETE").submit();          
+    //-     }
+    //-     return false;
+    //-   });

@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h2.page-header 숙소리스트
+  .container 
+      .row
+        each room in rooms
+          .col-md-4
+            .thumbnail
+              a(href='/rooms/detail/#{room.id}')
+                img(src='/images/img1.jpg', alt='IMG')
+                |           
+                .caption
+                  p= room.email
+                  p= room.title
+                  p= room.city
+                  p= room.address
+                  p= room.pay

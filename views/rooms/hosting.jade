@@ -1,0 +1,31 @@
+extends ../layout
+
+block content
+    .container
+    h1.page-header 숙소정보
+    form(action='/rooms', method='POST')
+      .form-group
+        label(for='title') 제목
+        input.form-control(type='title', id='title', name='title', placeholder='제목 입력')
+      .form-group
+        label(for='city') 도시
+        input.form-control(type='city', id='city', name='city', placeholder='도시 입력')
+      .form-group
+        label(for='address') 주소
+        input.form-control(type='', id='address', name='address', placeholder='주소 입력')
+      .form-group
+        label(for='pay') 숙소 요금
+        input.form-control(type='pay', id='pay', name='pay', placeholder='요금 입력')
+      .form-group
+        label(for='facility') 편의 시설
+        input.form-control(type='facility', id='facility', name='facility', placeholder='편의시설 입력')
+      .form-group
+        label(for='explain') 숙소 설명
+        textarea.form-control(id='explain', rows='5', name='explain', placeholder='explain here')
+      .form-group
+        label(for='rule') 이용 규칙
+        textarea.form-control(id='rule', rows='5', name='rule', placeholder='rule here')
+      div.form-actions
+        a.btn.btn-default(href='javascript:window.history.back();') 뒤로 
+        | 
+        button.btn.btn-primary(type='submit') 숙소 등록 
