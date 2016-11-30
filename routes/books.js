@@ -3,7 +3,16 @@ var Hosting = require('../models/Hosting');
 var Room = require('../models/Room');
 var router = express.Router();
 
-router.post('/:id', function(req, res, next) {
+function needAuth(req, res, next) {
+    if (req.session.user) {
+      next();
+    } else {
+      req.flash('danger', '로그인이 필요합니다.');
+      res.redirect('back');
+    }
+}
+
+router.post('/:id', needAuth, function(req, res, next) {
     Room.findById(req.params.id, function (err, room){
         var newHosting = new Hosting({
             send_email: req.session.user.email,
@@ -12,7 +21,7 @@ router.post('/:id', function(req, res, next) {
             checkin: req.body.checkin, 
             checkout: req.body.checkout,
             persons: req.body.persons,
-            result: "wait"
+            result: "대기중"
         });
         newHosting.save(function(err) {
         if (err) {
@@ -23,6 +32,34 @@ router.post('/:id', function(req, res, next) {
         }
         });
     });
+});
+
+router.get('/:id/accept', function(req, res, next) {
+   Hosting.findById(req.params.id, function (err, hosting){
+        hosting.result = "수락"
+        hosting.save(function(err) {
+        if (err) {
+            return next(err);
+        } else {
+            req.flash('danger', '예약을 수락하셨습니다.');
+            res.redirect('/users/detail');
+        }
+        });
+    }); 
+});
+
+router.get('/:id/reject', function(req, res, next) {
+   Hosting.findById(req.params.id, function (err, hosting){
+        hosting.result = "거절"
+        hosting.save(function(err) {
+        if (err) {
+            return next(err);
+        } else {
+            req.flash('danger', '예약을 거절하셨습니다.');
+            res.redirect('/users/detail');
+        }
+        });
+    }); 
 });
 
 router.delete('/:id', function(req, res, next) {

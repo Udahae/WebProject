@@ -1,0 +1,22 @@
+extends ../layout
+
+block content
+  p
+    strong
+        h2.page-header=city
+          |   검색결과
+  .container 
+      .row
+        each room in rooms
+          .col-md-4
+            .thumbnail
+              a(href='/rooms/detail/#{room.id}')
+                img(src='/images/img1.jpg', alt='IMG')
+                |           
+                .caption
+                  span ₩
+                  span
+                    Strong= room.pay
+                  span //
+                  span= room.city
+                  span 에 위치한 집

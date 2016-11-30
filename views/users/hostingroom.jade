@@ -18,8 +18,7 @@
             td= room.city
             td= room.address
             td= room.pay
-            td
-            //- td= moment(room.createdAt).format('YYYY-MM-DD')
+            td= moment(room.createdAt).format('YYYY-MM-DD')
             td
               a.btn.btn-xs.btn-default(href='/rooms/#{room._id}/edit') 수정
               | 

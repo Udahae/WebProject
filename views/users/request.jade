@@ -9,6 +9,7 @@
           th 체크인
           th 체크아웃
           th 인원
+          th 상황
           th
       tbody
         each host in hosts
@@ -19,8 +20,8 @@
             td= moment(host.checkin).format('YYYY-MM-DD')
             td= moment(host.checkout).format('YYYY-MM-DD')
             td= host.persons
-            //- td= moment(room.createdAt).format('YYYY-MM-DD')
+            td= host.result
             td
-              a.btn.btn-xs.btn-default(href='/books/#{room._id}/edit') 수락
+              a.btn.btn-xs.btn-default(href='/books/#{host._id}/accept') 수락
               | 
-              a.btn.btn-xs.btn-default(href='/books/#{room._id}?_method=DELETE') 거절
+              a.btn.btn-xs.btn-default(href='/books/#{host._id}/reject') 거절

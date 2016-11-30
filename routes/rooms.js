@@ -21,6 +21,12 @@ router.get('/host', function(req, res, next) {
   res.render('rooms/host');
 });
 
+router.post('/search', function(req, res, next) {
+  Room.find({city:req.body.city}, function(err, rooms){
+    res.render('rooms/search', {rooms:rooms, city:req.body.city})
+  });
+});
+
 router.get('/detail/:id', function(req, res, next) {
   Room.findById(req.params.id, function (err, room) {
     if(err){
