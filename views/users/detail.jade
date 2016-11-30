@@ -1,19 +1,23 @@
 extends ../layout
 
 block content
-    .indicator
-        ul.nav.nav-tabs.nav-justified
-            li.active(role='presentation')
-                a(href='#' id='profile') 프로필 변경
-            li(role='presentation')
-                a(href='#' id='books') 예약현황
-            li(role='presentation')
-                a(href='#' id='host') 숙소등록현황
-    
-    script(src='/javascripts/userdetail.js')
+    ul.nav.nav-tabs.nav-justified
+        li.active
+            a(data-toggle='tab', href='#profile') 프로필 변경   
+        li
+            a(data-toggle='tab', href='#books') 예약현황   
+        li
+            a(data-toggle='tab', href='#hosting') 숙소등록현황  
+        li
+            a(data-toggle='tab', href='#menu3') 숙소예약요청
 
-block contentdetail
-//질문이 필요합니다.
-    if()
-        include ../users/hostingroom
-
+    .tab-content
+        #profile.tab-pane.fade.in.active
+            h3 profile     
+            p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.   
+        #books.tab-pane.fade    
+            include ../users/reservation  
+        #hosting.tab-pane.fade
+            include ../users/hostingroom
+        #menu3.tab-pane.fade
+            include ../users/request 

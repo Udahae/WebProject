@@ -1,7 +1,3 @@
-//extends ../users/detail
-
-//block contentdetail
-
 .container
     h1.page-header List
     
@@ -25,18 +21,6 @@
             td
             //- td= moment(room.createdAt).format('YYYY-MM-DD')
             td
-              a.btn.btn-xs.btn-default(href='#') 수정
+              a.btn.btn-xs.btn-default(href='/rooms/#{room._id}/edit') 수정
               | 
-              a.btn.btn-xs.btn-default(href='/rooms/#{room._id}') 삭제
-
-
-
-
-    //- script(type='text/javascript').
-    //-   $(".delete").click(function(e) {
-    //-     var id = $(e.currentTarget).data('id');
-    //-     if (confirm('정말 삭제하시겠습니까?')) {
-    //-       $("#deleteForm").attr('action', "/rooms/" + id + "?_method=DELETE").submit();          
-    //-     }
-    //-     return false;
-    //-   });
+              a.btn.btn-xs.btn-default(href='/rooms/#{room._id}?_method=DELETE') 삭제

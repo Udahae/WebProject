@@ -11,8 +11,10 @@ block content
                 img(src='/images/img1.jpg', alt='IMG')
                 |           
                 .caption
-                  p= room.email
-                  p= room.title
-                  p= room.city
-                  p= room.address
-                  p= room.pay
+                  span ₩
+                  span
+                    Strong= room.pay
+                  span //
+                  span= room.city
+                  span 에 위치한 집
+

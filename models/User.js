@@ -4,6 +4,8 @@ var mongoose = require('mongoose'),
 var schema = new Schema({
   name : {type: String},
   email: {type: String, required: true, index: true, unique: true, trim: true},
+  phonenumber: {type: String},
+  address: {type: String},
   password: {type: String},
   bookplace: {type: String},
   createdAt: {type: Date, default: Date.now}

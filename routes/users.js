@@ -1,5 +1,6 @@
 var express = require('express');
 var User = require('../models/User');
+var Hosting = require('../models/Hosting');
 var Room = require('../models/Room');
 var router = express.Router();
 
@@ -51,18 +52,18 @@ router.get('/detail', function(req, res, next) {
     if(err){
         return next(err);
      }
-     res.render('users/detail',{rooms : rooms});
-  })
- // res.render('users/detail');
-});
-
-router.get('/hostingroom', function(req, res, next) {
-  Room.find({email:req.session.user.email}, function(err, rooms){
-    if(err){
+     Hosting.find({send_email:req.session.user.email}, function(err, Hostings){
+       if(err){
         return next(err);
-     }
-     res.render('users/hostingroom',{rooms : rooms});
-  })
+      }
+      Hosting.find({take_email:req.session.user.email}, function(err, Hosts){
+       if(err){
+        return next(err);
+      }
+      res.render('users/detail', {rooms:rooms, hostings : Hostings, hosts:Hosts});
+      });
+     });   
+  });
 });
 
 router.post('/', function(req, res, next) {
@@ -82,6 +83,8 @@ router.post('/', function(req, res, next) {
     var newUser = new User({
       name : req.body.name,
       email: req.body.email,
+      phonenumber: req.body.phonenumber,
+      address: req.body.address,
       password: req.body.password
     });
 

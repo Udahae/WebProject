@@ -7,6 +7,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var flash = require('connect-flash');
+var methodOverride = require('method-override');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -26,6 +27,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.locals.moment = require('moment');
+app.use(methodOverride('_method', {methods: ['POST', 'GET']}));
 
 mongoose.connect('mongodb://Udahae:rdh960516@ds147797.mlab.com:47797/dddbbb');
 mongoose.connection.on('error', console.log);

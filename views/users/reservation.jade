@@ -1,0 +1,26 @@
+.container
+    h1.page-header Reservation
+    
+    table.table.table-bordered
+      thead
+        tr
+          th Host
+          th Room
+          th 체크인
+          th 체크아웃
+          th 인원
+          th 현황
+          th
+      tbody
+        each hosting in hostings
+          tr
+            td= hosting.take_email
+            td 
+              a(href='/rooms/detail/#{hosting.room_id}') Room 확인
+            td= moment(hosting.checkin).format('YYYY-MM-DD')
+            td= moment(hosting.checkout).format('YYYY-MM-DD')
+            td= hosting.persons
+            td= hosting.result
+            //- td= moment(room.createdAt).format('YYYY-MM-DD')
+            td
+              a.btn.btn-xs.btn-default(href='/books/#{hosting._id}?_method=DELETE') 취소

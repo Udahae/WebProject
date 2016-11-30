@@ -1,4 +1,4 @@
-form(action = "/books", method='POST')
+form(action = "/books/#{room.id}", method='POST')
     .form-group
         h2 CHECK IN
         input.form-control(type='date', id='checkin', name='checkin')
