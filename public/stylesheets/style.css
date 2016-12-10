@@ -15,3 +15,8 @@ a {
 #TOPIMG{
   margin: auto;
 }
+
+.affix {
+      top: 30px;
+      width: 23%;
+  }

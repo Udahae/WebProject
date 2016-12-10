@@ -1,15 +1,16 @@
-form(action = "/books/#{room.id}", method='POST')
-    .form-group
-        h2 CHECK IN
-        input.form-control(type='date', id='checkin', name='checkin')
-        h2 CHECK OUT
-        input.form-control(type='date', id='checkout', name='checkout')
-        h2 인원
-        select.form-control(name='persons')
-            option 1명
-            option 2명
-            option 3명
-            option 4명  
-            option 5명
-    div.form-actions
-        button.btn.btn-primary.btn-lg.btn-block(type='submit') 예약하기
+div(data-spy="affix" data-offset-top="500")
+    form(action = "/books/#{room.id}", method='POST')
+        .form-group
+            h2 CHECK IN
+            input.form-control(type='date', id='checkin', name='checkin')
+            h2 CHECK OUT
+            input.form-control(type='date', id='checkout', name='checkout')
+            h2 인원
+            select.form-control(name='persons')
+                option 1명
+                option 2명
+                option 3명
+                option 4명  
+                option 5명
+        div.form-actions
+            button.btn.btn-primary.btn-lg.btn-block(type='submit') 예약하기

@@ -137,7 +137,7 @@ router.get('/:id/edit', function(req, res, next) {
     });
 });
 
-router.put('/:id', function(req,res,next){
+router.put('/:id', upload.array('photos'),function(req,res,next){
   Room.findById({_id: req.params.id}, function(err, room) {
     if (err) {
       return next(err);

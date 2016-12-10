@@ -42,7 +42,7 @@ router.get('/:id/accept', function(req, res, next) {
             return next(err);
         } else {
             req.flash('danger', '예약을 수락하셨습니다.');
-            res.redirect('/users/detail');
+            res.redirect('/');
         }
         });
     }); 
@@ -56,7 +56,7 @@ router.get('/:id/reject', function(req, res, next) {
             return next(err);
         } else {
             req.flash('danger', '예약을 거절하셨습니다.');
-            res.redirect('/users/detail');
+            res.redirect('/');
         }
         });
     }); 

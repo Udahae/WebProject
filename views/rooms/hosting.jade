@@ -16,22 +16,22 @@ block content
         input.form-control(type='city', id='city', name='city', placeholder='도시 입력' value=room.city)
       .form-group
         label(for='address') 주소
-        input.form-control(type='', id='address', name='address', placeholder='주소 입력' value=room.address)
+        input.form-control(type='text', id='address', name='address', placeholder='주소 입력' value=room.address)
       .form-group
         label(for='pay') 숙소 요금
-        input.form-control(type='pay', id='pay', name='pay', placeholder='요금 입력' value=room.pay)
+        textarea.form-control(type='text', id='pay', rows='5', name='pay', placeholder='요금 입력' value=room.pay)
       .form-group
         label(for='images') 사진
         input.form-control(type="file", name='photos')
       .form-group
         label(for='facility') 편의 시설
-        input.form-control(type='facility', id='facility', name='facility', placeholder='편의시설 입력' value=room.facility)
+        textarea.form-control(type='text', id='facility',rows='5', name='facility', placeholder='편의시설 입력' value=room.facility)
       .form-group
         label(for='explain') 숙소 설명
-        textarea.form-control(id='explain', rows='5', name='explain', placeholder='explain here')=room.explain
+        textarea.form-control(id='text', rows='5', name='explain', placeholder='explain here')=room.explain
       .form-group
         label(for='rule') 이용 규칙
-        textarea.form-control(id='rule', rows='5', name='rule', placeholder='rule here')=room.rule
+        textarea.form-control(id='text', rows='5', name='rule', placeholder='rule here')=room.rule
      
       div.form-actions
         a.btn.btn-default(href='javascript:window.history.back();') 뒤로 
