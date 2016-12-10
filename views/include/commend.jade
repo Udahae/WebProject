@@ -1,0 +1,17 @@
+h2.page-header commend  
+table.table
+  tr
+    th reviewer
+    th content
+    th time
+  each commend in commends
+    tr
+      td= commend.reviewer
+      td= commend.content
+      td= moment(commend.createdAt).format('YYYY/MM/DD')
+
+form.form-inline(action='/rooms/' + room._id + '/commends', method='POST')
+    .form-group
+      label.sr-only(for='content') content
+      input.form-control(type = "text", size="80", name='content', placeholder='content')
+    button.btn.btn-primary(type='submit') 댓글저장

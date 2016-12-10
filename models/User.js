@@ -7,7 +7,6 @@ var schema = new Schema({
   phonenumber: {type: String},
   address: {type: String},
   password: {type: String},
-  bookplace: {type: String},
   createdAt: {type: Date, default: Date.now}
 }, {
   toJSON: { virtuals: true},

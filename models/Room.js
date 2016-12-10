@@ -7,6 +7,7 @@ var schema = new Schema({
   explain: {type: String},
   city: {type: String},
   address: {type: String},
+  images:[String],
   pay: {type: String},
   facility: {type: String},
   rule: {type: String},

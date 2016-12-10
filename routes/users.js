@@ -44,7 +44,32 @@ function validateForm(form, options) {
 
 /* GET users listing. */
 router.get('/new', function(req, res, next) {
-  res.render('users/new');
+    res.render('users/new');
+});
+
+router.get('/:id/edit', function(req, res, next) {
+   User.findById(req.params.id, function (err, user) {
+    if(err){
+      return next(err);
+    }
+    res.render('users/edit', {user:user});
+  });
+});
+
+router.get('/control', function(req, res, next) {
+  User.find({}, function(err, users){
+    if(err){
+        return next(err);
+     }
+     res.render('users/control',{users : users});
+  })
+});
+
+router.delete('/:id', function(req, res, next) {
+  delete req.session.user;
+  User.findOneAndRemove({_id: req.params.id}, function(err){
+     res.redirect('/');
+  })
 });
 
 router.get('/detail', function(req, res, next) {
@@ -53,15 +78,20 @@ router.get('/detail', function(req, res, next) {
         return next(err);
      }
      Hosting.find({send_email:req.session.user.email}, function(err, Hostings){
-       if(err){
-        return next(err);
-      }
-      Hosting.find({take_email:req.session.user.email}, function(err, Hosts){
-       if(err){
-        return next(err);
-      }
-      res.render('users/detail', {rooms:rooms, hostings : Hostings, hosts:Hosts});
-      });
+        if(err){
+          return next(err);
+        }
+        Hosting.find({take_email:req.session.user.email}, function(err, Hosts){
+          if(err){
+            return next(err);
+          }
+          User.findOne({email:req.session.user.email}, function(err, user){
+            if(err){
+              return next(err);
+            }
+            res.render('users/detail', {rooms:rooms, hostings : Hostings, hosts:Hosts, user:user});
+          });          
+        });
      });   
   });
 });
@@ -95,6 +125,46 @@ router.post('/', function(req, res, next) {
         req.flash('success', '가입이 완료되었습니다. 로그인 해주세요.');
         res.redirect('/');
       }
+    });
+  });
+});
+
+
+/////////////
+router.put('/:id', function(req, res, next) {
+  var err = validateForm(req.body);
+  if (err) {
+    req.flash('danger', err);
+    return res.redirect('back');
+  }
+
+  User.findById({_id: req.params.id}, function(err, user) {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      req.flash('danger', '존재하지 않는 사용자입니다.');
+      return res.redirect('back');
+    }
+
+    if (user.password !== req.body.current_password) {
+      req.flash('danger', '현재 비밀번호가 일치하지 않습니다.');
+      return res.redirect('back');
+    }
+
+    user.name = req.body.name;
+    user.address = req.body.address;
+    user.phonenumber = req.body.phonenumber;
+    if (req.body.password) {
+      user.password = req.body.password;
+    }
+
+    user.save(function(err) {
+      if (err) {
+        return next(err);
+      }
+      req.flash('success', '사용자 정보가 변경되었습니다.');
+      res.redirect('/');
     });
   });
 });

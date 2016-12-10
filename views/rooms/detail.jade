@@ -1,10 +1,13 @@
 extends ../layout
 
+block hero-unit
+    img.img-rounded.img-responsive(src=room.images, id = "TOPIMG")
 block content
-    h1=room.title
     .container
       .row
         .col-md-8
+          h1=room.title
           include ../include/detail-main
+          include ../include/commend
         .col-md-4.side
           include ../include/detail-side

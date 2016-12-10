@@ -16,6 +16,9 @@ nav.navbar.navbar-inverse.navbar-fixed-top
                             a(href='/signin') 로그인
                         li
                             a(href='/users/new') 회원가입
+                    else if(currentUser.email === "dahae@naver.com")
+                        li 
+                            a(href='/users/control') 회원관리
                     else
                         li
                             a(href='/users/detail') 프로필

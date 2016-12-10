@@ -32,6 +32,7 @@ app.use(methodOverride('_method', {methods: ['POST', 'GET']}));
 
 mongoose.connect('mongodb://Udahae:rdh960516@ds147797.mlab.com:47797/dddbbb');
 mongoose.connection.on('error', console.log);
+
 app.use(session({
   secret: '12341234123412234',
   resave: false,
