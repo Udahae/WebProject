@@ -62,14 +62,40 @@ router.get('/control', function(req, res, next) {
         return next(err);
      }
      res.render('users/control',{users : users});
-  })
+  });
 });
 
 router.delete('/:id', function(req, res, next) {
-  delete req.session.user;
   User.findOneAndRemove({_id: req.params.id}, function(err){
-     res.redirect('/');
-  })
+    Room.remove({email : req.session.user.email}, function(err){
+      Hosting.remove({send_email:req.session.user.email}, function(err){
+        Hosting.remove({take_email : req.session.user.email}, function(err){
+          if(err){
+          return next(err);
+          }
+          delete req.session.user;
+          res.redirect('/');
+        });
+      });
+    });
+  });
+});
+
+router.delete('/:id/clear', function(req, res, next) {
+  User.findOne({_id: req.params.id}, function(err, user){
+    Room.remove({email : user.email}, function(err){
+      Hosting.remove({send_email:user.email, take_email : user.email}, function(err){
+        Hosting.remove({take_email : req.session.user.email}, function(err){
+          User.remove({_id: req.params.id}, function(err){
+            if(err){
+              return next(err);
+            }
+            res.redirect('/');
+          }); 
+        });
+      });
+    });
+  });
 });
 
 router.get('/detail', function(req, res, next) {

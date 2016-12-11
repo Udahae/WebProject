@@ -17,4 +17,4 @@ block content
             td= user.email
             td= moment(user.createdAt).format('YYYY-MM-DD')
             td
-              a.btn.btn-xs.btn-default(href='/users/#{user._id}?_method=DELETE') 삭제
+              a.btn.btn-xs.btn-default(href='/users/#{user._id}/clear?_method=DELETE') 삭제
